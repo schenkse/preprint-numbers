@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A simple web application</title>
+</head>
+
+<body>
+    <h1>Draw a preprint number</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.authors.label }} : <br>
+            {{ form.authors(size=32) }} <br>
+            {% for error in form.authors.errors %}
+            <span style="color: red;">*{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.title.label }} : <br>
+            {{ form.title(size=32) }} <br>
+            {% for error in form.title.errors %}
+            <span style="color: red;">*{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </form>
+</body>
+
+</html>
